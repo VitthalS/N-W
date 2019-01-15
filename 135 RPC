@@ -1,0 +1,1 @@
+* nmap -n -v -sV -Pn -p 135 –script=msrpc-enum IP
