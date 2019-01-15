@@ -1,0 +1,4 @@
+* nmap -n -v -sV -Pn -p 1433 –script ms-sql-brute –script-args userdb=users.txt,passdb=passwords.txt IP
+* nmap -n -v -sV -Pn -p 1433 –script ms-sql-info,ms-sql-ntlm-info,ms-sql-empty-password IP
+
+* Looking for metasploit modules - https://www.offensive-security.com/metasploit-unleashed/hunting-mssql/
