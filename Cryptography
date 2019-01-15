@@ -1,0 +1,18 @@
+* hash-identifier
+  * use to find out what type of hash found
+
+* MD5 Hash: 16 bytes
+    * example:
+    * 8743b52063cd84097a65d1633f5c74f5
+
+* $PASS: $SALT
+* 01dfae6e5d4d90d9892622325959afbe:7050461
+
+* SHA1 Hash: 20 bytes
+  * b89eaac7e61417341b710b727768294d0e6a277b
+
+* SHA256 Hash: 36 bytes
+  * 127e6fbfe24a750e72930c220a8e138275656b8e5d8f48a98c3c92df2caba935
+
+* SHA512 Hash: 64 bytes
+  * 82a9dda829eb7f8ffe9fbe49e45d47d2dad9664fbb7adf72492e3c81ebd3e29134d9bc12212bf83c6840f10e8246b9db54a4859b7ccd0123d86e5872c1e5082f
