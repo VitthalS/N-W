@@ -1,0 +1,9 @@
+* nmap -n -v -sV -Pn -p 1521 –script=oracle-enum-users –script-args sid=ORCL,userdb=users.txt IP
+* nmap -n -v -sV -Pn -p 1521 –script=oracle-sid-brute IP
+
+* TNSCMD
+  * Tool used to to talk to TNS-Listener.
+    * tnscmd - http://dokfleed.net/files/audit/tnscmd10g.zip
+  * ./tnscmd.pl status -h 192.168.0.2
+  * tells us if we can communicate with listener
+  * error means it may be password protected
