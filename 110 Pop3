@@ -1,1 +1,8 @@
 * telnet IP 110
+
+> Test authentication:
+    telnet $ip 110
+    USER uer@$ip
+    PASS admin
+    list
+    retr 1
