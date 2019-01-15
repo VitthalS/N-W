@@ -1,0 +1,2 @@
+* davtest -move -sendbd auto -url http://$ip:8080/webdav/
+* cadaver http://$ip:8080/webdav/
