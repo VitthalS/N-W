@@ -1,1 +1,4 @@
-* JXplorer - http://jxplorer.org/
+> JXplorer - http://jxplorer.org/
+
+> Enumeration:
+* ldapsearch -h $ip -p 389 -x -b "dc=mywebsite,dc=com"
