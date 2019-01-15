@@ -1,0 +1,6 @@
+* exiftool filename.png
+
+* binwalk -Me file.png
+
+*steghide - http://steghide.sourceforge.net/
+  *steghide -xf filename.jgp
