@@ -1,0 +1,2 @@
+* nmap -n -v -sV -Pn -p 3306 –script=mysql-info,mysql-audit,mysql-enum,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-users,mysql-query,mysql-variables,mysql-vuln-cve2012-2122 IP
+* mysql –host=IP -u root -p
