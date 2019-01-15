@@ -1,3 +1,20 @@
 > https://touhidshaikh.com/blog/?p=914
+
 > Use https://github.com/pentestmonkey/finger-user-enum script from github
 * finger username@IP
+
+> Find Logged in users on target.
+* finger @$ip
+> if there is no user logged in this will show no username
+
+> Using Metasploit fo Brute-force target
+    use auxiliary/scanner/finger/finger_users
+    set rhosts $ip
+    set users_file 
+    run
+
+* cd /tmp/
+* wget http://pentestmonkey.net/tools/finger-user-enum/finger-user-enum-1.0.tar.gz
+* tar -xvf finger-user-enum-1.0.tar.gz
+* cd finger-user-enum-1.0
+* perl finger-user-enum.pl -t 10.22.1.11 -U /tmp/rockyou-top1000.txt
