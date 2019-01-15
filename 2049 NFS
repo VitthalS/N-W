@@ -1,0 +1,4 @@
+* nmap –script=nfs-ls IP
+* nmapspy - https://github.com/bonsaiviking/NfSpy
+* showmount -e IP
+* showmount -a IP
