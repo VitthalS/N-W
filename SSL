@@ -1,0 +1,8 @@
+> Open a connection
+* openssl s_client -connect $ip:443
+
+> Basic SSL ciphers check
+* nmap --script ssl-enum-ciphers -p 443 $ip
+
+> Look for unsafe ciphers such as Triple-DES and Blowfish
+> Very complete tool for SSL auditing is testssl.sh, finds BEAST, FREAK, POODLE, heart bleed, etc
