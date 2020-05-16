@@ -1,6 +1,6 @@
 # N-W
 
-## Cheat Sheet for Network,CTF. Complilation from various sources.
+## Cheat Sheet for Network,CTF
 
 
 
