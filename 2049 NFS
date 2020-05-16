@@ -1,9 +1,0 @@
-* nmap –script=nfs-ls IP
-* nmapspy - https://github.com/bonsaiviking/NfSpy
-
-> Show all Mounts
-* showmount -e IP
-* showmount -a IP
-
-Mount a NFS share
-* mount $ip:/vol/share /mnt/nfs
