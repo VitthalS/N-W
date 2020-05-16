@@ -1,9 +1,0 @@
-* nmap -n -v -sV -Pn -p 135 –script=msrpc-enum IP
-
-***Enumerate, shows if any NFS mount exposed:***
-
-* rpcinfo -p $ip
-
-* nmap $ip --script=msrpc-enum
-
-* msf > use exploit/windows/dcerpc/ms03_026_dcom
