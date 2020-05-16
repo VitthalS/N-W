@@ -1,6 +1,8 @@
 # N-W
 
-## Cheat Sheet for Network
+## Cheat Sheet for Network,CTF. Complilation from various sources.
+
+
 
 ![alt text](https://github.com/VitthalS/N-W/blob/master/mindmap.png?raw=true)
 
