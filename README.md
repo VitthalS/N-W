@@ -121,6 +121,14 @@ Port Knocking -
 After that you have to scan the network to see if any new port is open.
 
 
+- Agent Forwarding - It allows you to use your local SSH keys instead of leaving keys (without passphrases!) sitting on your server.
+
+        ssh -A user@myhost.com 
+        
+-A option enables forwarding of the authentication agent connection.
+
+It means that, it forwards your SSH auth schema to the remote host. So you can use SSH over there as if you were on your local machine.
+
 **25 SMTP**
 
 - nc -nvv IP 25
