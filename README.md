@@ -511,11 +511,10 @@ Community string too long,If you see this download onesixtyone from Github and r
         ldapsearch -h $ip -p 389 -x -b "dc=mywebsite,dc=com"
 
 
-**1433 MySQL**
+**1433 MSSQL**
 
 - Nmap scan
 ```
-nmap -sV -Pn -vv -script=mysql* $ip -p 3306
 
 nmap -n -v -sV -Pn -p 1433 –script ms-sql-brute –script-args userdb=users.txt,passdb=passwords.txt IP
 
@@ -572,6 +571,8 @@ Tool used to to talk to TNS-Listener.
 **3306 MySQL**
 
 - Nmap Scan
+        
+        nmap -sV -Pn -vv -script=mysql* $ip -p 3306
 
         nmap -n -v -sV -Pn -p 3306 –script=mysql-info,mysql-audit,mysql-enum,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-users,mysql-query,mysql-variables,mysql-vuln-cve2012-2122 IP
 
